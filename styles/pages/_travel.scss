@@ -1,0 +1,92 @@
+.travel {
+  @extend .content-width;
+
+  &__inner {
+    position: relative;
+    z-index: 0;
+    @extend .flex;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: $cBgGray;
+
+    @include mq('tab') {
+      padding: 50px;
+    }
+
+    @include mq('pc') {
+      padding: 50px 150px;
+    }
+  }
+
+  &__texts,
+  &__img {
+    @include mq('tab') {
+      flex-basis: 47%;
+    }
+  }
+
+  &__sub {
+    @extend .mb-sm;
+  }
+
+  &__img {
+    height: 300px;
+    @extend .mb-sm;
+    transition: box-shadow 1ms linear 0.8s;
+
+    @include mq('960up') {
+      height: 400px;
+    }
+    & > img {
+      position: relative;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &.inview {
+      box-shadow: inset 0 0 30px $cBlack;
+    }
+  }
+
+  &__texts {
+    @extend .pb-sm;
+
+    //inviewが付与されたら伸びるように指定する
+    &.inview {
+      & .travel__ttl::before {
+        transform: translateY(-50%) scaleX(1);
+      }
+    }
+
+    @include mq('tab') {
+      display: flex;
+      align-items: flex-end;
+    }
+  }
+
+  &__description {
+    @include mq('960up') {
+      margin-bottom: 40px;
+    }
+  }
+
+  &__ttl {
+    position: relative;
+
+    //横に伸びる棒
+    @include p-base($display: none, $width: 100px, $height: 1px, $top: 50%, $left: -120px) {
+      background-color: $cBlack;
+      transform: translateY(-50%) scaleX(0);
+      transition: transform 0.3s ease 1.6s;
+      transform-origin: right;
+    };
+
+    &::before {
+      @include mq('960up') {
+        display: block;
+      }
+    }
+  }
+}

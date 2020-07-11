@@ -1,0 +1,31 @@
+.footer {
+  padding: 60px 0;
+  @extend .content-width;
+
+  &__nav {
+    @extend .flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+  }
+
+  &__list {
+    @extend .flex;
+  }
+  &__item {
+    padding: 0;
+    margin: 10px;
+
+    @include mq('tab') {
+      margin-left: 0;
+      margin-right: 30px;
+    }
+  }
+  & .logo {
+    font-size: 38px;
+    justify-content: center;
+    @include mq('tab') {
+      justify-content: flex-start;
+    }
+  }
+}

@@ -1,0 +1,43 @@
+.animate-title,
+.tween-animate-title {
+  color: #333;
+  opacity: 0;
+
+  &.inview {
+    opacity: 1;
+    & .char {
+      display: inline-block;
+    }
+  }
+  & .char {
+    opacity: 0;
+  }
+}
+
+.animate-title.inview .char {
+  @include animation(
+    $name: kf-animate-chars,
+    $timing-function: cubic-bezier(0.39, 1.57, 0.58, 1),
+    $duration: 0.5s,
+    $iteration-count: 1,
+    $fill-mode: both
+  );
+  //このアニメーションにはデメリットがあり、このfor文で文字数を入力してやる必要がある...
+  //代わりの手段でjavascriptのtweenMaxのアニメーションライブラリを使用する手もある
+  @for $i from 1 through 30 {
+    &:nth-child(#{$i}) {
+      animation-delay: $i * 0.04s;
+    }
+  }
+}
+
+@keyframes kf-animate-chars {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%) rotate(135deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

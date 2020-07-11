@@ -1,0 +1,23 @@
+.houses {
+  @extend .content-width;
+
+  &__inner {
+    @extend .flex;
+  }
+
+  &__item {
+    @include mq('tab') {
+      flex:0 0 50%;
+      margin-bottom: 60px;
+    }
+  }
+  &__ttl {
+    @extend .font-lr;
+    @extend .mb-sm;
+  }
+
+  &__btn {
+    text-align: center;
+    flex-basis: 100%;
+  }
+}

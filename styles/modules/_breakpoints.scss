@@ -1,0 +1,16 @@
+//=============メディアクエリ==============//
+$breakpoints: (
+  "sp": "screen and (max-width: 479px)",
+  "480up": "screen and (min-width: 480px)",
+  "tab": "screen and (min-width: 600px)",
+  "960up": "screen and (min-width: 960px)",
+  "pc": "screen and (min-width: 1280px)",
+  "2x": "screen and (min-resolution: 192dpi)",
+);
+
+
+@mixin mq($breakpoint: sp) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}

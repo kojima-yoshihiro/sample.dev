@@ -1,0 +1,182 @@
+body {
+  font-family: "Cormorant Infant", "Noto Sans JP", sans-serif;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: bottom; //インライン要素の上下で移動するときに使う
+  //imgに対して付与すると上下余白を解消してくれる
+}
+
+a {
+  color: currentColor;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.font-sm {
+  font-size: 14px;
+  @include mq("pc") {
+    font-size: 16px;
+  }
+}
+.font-md {
+  font-size: 17px;
+  @include mq("pc") {
+    font-size: 19px;
+  }
+}
+.font-lr {
+  font-size: 17px;
+  @include mq("pc") {
+    font-size: 23px;
+  }
+}
+.font-lg {
+  font-size: 30px;
+  @include mq("pc") {
+    font-size: 36px;
+  }
+}
+
+.mb-sm {
+  margin-bottom: 16px !important;
+}
+.mb-lg {
+  margin-bottom: 80px !important;
+  @include mq("pc") {
+    margin-bottom: 150px;
+  }
+}
+.pb-sm {
+  padding-bottom: 16px !important;
+}
+.pb-lg {
+  padding-bottom: 80px !important;
+  @include mq("pc") {
+    margin-bottom: 150px;
+  }
+}
+.content-width {
+  width: 90%;
+  margin: 0 auto;
+  max-width: $contentMaxWidth;
+}
+
+.main-ttl {
+  @extend .font-lg;
+  font-weight: 600;
+  margin-bottom: 0;
+  display: block;
+}
+.sub-ttl {
+  @extend .font-sm;
+  color: $cSubTitle;
+  display: block;
+}
+
+.flex {
+  display: flex;
+  flex-flow: column;
+  @include mq('tab') {
+    flex-flow: row wrap;
+  }
+}
+
+.purple {
+  color: $cWineRed;
+}
+
+#content {
+  padding-top: $navHeight;
+}
+
+#main-content {
+  position: relative;
+  z-index: 0;
+}
+
+#container {
+  position: relative;
+  transition: transform 0.5s, box-shadow 0.5s;
+  background-color: $cWhite;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 42px;
+  display: flex;
+  &__img {
+    width: 0.7em;
+  }
+  &__world {
+    color: $cWineRed;
+  }
+}
+
+//=====左右サイドバー=====//
+.side {
+  display: none;
+  position: fixed;
+  top: 70%;
+  transition: all .5s ease-in;
+  transform: translateY(-50%);
+  z-index: 10;
+  @include mq('pc') {
+    display: block;
+  }
+
+  & a,
+  & span {
+    margin: 0 40px;
+    vertical-align: middle;
+    letter-spacing: 2px;
+  }
+
+  &.left {
+    //基準は画面外
+    left: -50px;
+    //inviewクラスがついたら画面内に入ってくるようにする
+    &.inview {
+      left: 50px;
+    }
+    & .side__inner {
+      transform-origin: top left;
+      transform: rotate(-90deg);
+    }
+  }
+  &.right {
+    right: -50px;
+    &.inview {
+      right: 50px;
+    }
+    & .side__inner {
+      transform-origin: top right;
+      transform: rotate(90deg);
+    }
+  }
+}
+
+//=====左右サイドバー内のアイコン=====//
+.icon {
+  position: relative;
+
+  @include p-base($left: -20px, $top: 50%, $width: 1em, $height: 1em) {
+    transform: translateY(-50%);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  };
+
+  &.twitter {
+    &::before {
+      background-image: url(/images/twitter.svg);
+    }
+  }
+  &.fb {
+    &::before {
+      background-image: url(/images/facebook.svg);
+    }
+  }
+}

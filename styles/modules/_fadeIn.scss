@@ -1,0 +1,35 @@
+// ======@each文の指定===============//
+$pattern: (//<===========mapの情報を$patternという変数に代入する
+    "up": translateY(50px),
+  "down": translateY(-50px),
+  "left": translateX(50px),
+  "right": translateX(-50px)
+);
+
+@each $key, $value in $pattern {//<===========@eachで.fadeInクラスに$patternのクラスを付ける設定をする(クラスごとの値も変わる)
+  .fadeIn.#{$key} {
+    .item {
+      transform: $value;
+    }
+  }
+
+  // =======共通の部品===============//
+  .fadeIn {
+    .item {
+      transition: all 1.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+      opacity: 0;
+    }
+    &.inview {
+      .item {
+        opacity: 1;
+        transform: none;
+
+        @for $i from 1 through 10 {
+          &:nth-child(#{$i}) {
+            transition-delay: $i * 0.2s; //nth-childごとに0.2sの遅延を付ける
+          }
+        }
+      }
+    }
+  }
+}
